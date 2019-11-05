@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>企业微信机器人管理</title>
+	
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta name="keywords" content="" />
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!--// Meta tag Keywords -->
+    
+	<!-- css files -->
+	<link rel="stylesheet" href="{{url_for('static',filename='bootstrap.css')}}"> <!-- Bootstrap-Core-CSS -->
+    <link href="{{url_for('static',filename='style6.css')}}" rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="{{url_for('static',filename='style.css')}}" type="text/css" media="all" /> <!-- Style-CSS -->
+	<link rel="stylesheet" href="{{url_for('static',filename='fontawesome-all.css')}}"> <!-- Font-Awesome-Icons-CSS -->
+	<!-- //css files -->
+	
+	<!--web font-->
+	<link href="http://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext" rel="stylesheet">
+	<!--//web font-->
+    <style>
+        .criss {
+     width:100px;
+     text-align:center;
+     line-height:100%;
+     padding:0.3em;
+     font:16px Arial,sans-serif bold;
+     font-style:normal;
+     text-decoration:none;
+     margin:2px;
+     vertical-align:text-bottom;
+     zoom:1;
+     outline:none;
+     font-size-adjust:none;
+     font-stretch:normal;
+     border-radius:50px;
+     box-shadow:0px 1px 2px rgba(0,0,0,0.2);
+     text-shadow:0px 1px 1px rgba(0,0,0,0.3);
+     color:#fefee9;
+     border:0.2px solid #2299ff;
+     background-repeat:repeat;
+     background-size:auto;
+     background-origin:padding-box;
+     background-clip:padding-box;
+     background-color:#3399ff;
+     background: linear-gradient(to bottom, #eeeff9 0%,#3399ff 100%);
+}
+
+    .criss:hover {
+        background: #268DFF;
+    }
+
+    </style>
+</head>
+
+<body>
+
+<!-- header -->
+<div class="header-top">
+	<header>
+		
+		<div class="clearfix"></div>
+
+
+	</header>
+</div>
+<!-- //header -->
+
+<!-- inner page banner -->
+<section class="inner-page-banner">
+	<div class="page-heading text-center">
+		<h2>企业微信机器人管理</h2>
+		<span class="section_1-breadcrumbs"><a href="../static/index.html"><i class="fa fa-home home_1"></i> 支持</a> <span>文本格式/ 微信文章格式/ MarkDown格式消息</span></span>
+	</div>
+</section>
+<!-- //inner page banner -->
+
+<!-- contact -->		
+<section class="contact py-5">
+	<div class="container">
+		<div class="heading pb-4">
+			<h3 class="heading mb-2 text-center"> <span>消息 </span> 发送 </h3>
+			<p class="para mb-5 text-center">选择对应的机器人发送消息</p>
+		</div>
+		<div class="row contact-agileinfo">
+			<div class="col-md-7 contact-right"> 
+				<form action="#" method="post">  
+					<input type="text" name="articletype" id="articletype" placeholder="文章类型" required="" list="list">
+					<datalist id="list">
+							<option value="TEXT">文本</option>
+							<option value="MARKDOWN">MARKDOWN</option>
+							<option value="NEWS">微信文章</option>
+						</datalist>
+						<p>&nbsp;</p>
+
+
+
+	
+					<input type="text"  name="phone" onFocus="focusInputEle(this)" onBlur="blurInputEle(this)" id ="phone" value="@all" placeholder="@all" required="">
+					<p>&nbsp;</p>
+					<input type="text" name="robot" id="robot" placeholder="选择机器人" required="" list="robotlist">
+					<datalist id="robotlist">
+						{% for abot in bots %}
+						<option value="{{abot.webhook}}">
+                            {{abot.botname}}</option>
+						{% endfor %}
+						<!--<option value="TEXT">文本</option>
+						<option value="MARKDOWN">MARKDOWN</option>
+						<option value="NEWS">微信文章</option>-->
+					</datalist>
+					
+
+					<textarea name="detail" id="detail" placeholder="消息内容" required=""></textarea>
+					<div class="read mt-3">
+                       <button type="submit" class = "criss">发送</button>
+					</div>	
+				</form>
+			</div>
+			<div class="col-md-5 mt-md-0 mt-5 contact-left">
+				<div class="address">
+					
+					<p><span class="fa fa-home"></span>必填：文本格式/ 微信文章格式/ MarkDown格式消息</p>
+				</div>
+				<div class="address address-mdl">
+					
+					<p><span class="fa fa-phone"></span> 非必填：输入@用户电话号码，多个用户用英文逗号,分割,all会在消息发出后提醒所有</p>
+					
+				</div>
+				<div class="address address-mdl">
+					
+						<p><span class="fa fa-mobile"></span> 必填：选择要发消息的机器人</p>
+						
+					</div>
+				<div class="address">
+					
+					<p><span class="fa fa-globe"></span> 必填一种：</br>1、文本直接输入文本内容</br> 2、MARKDOWN直接输入文本内容</br>3、微信文章格式：</br>{
+						            "title" : "文章标题",
+						            "description" : "文章高腰",
+						            "url" : "文章详情地址",
+						           "picurl" : "文章图片地址"
+						        }</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+
+
+<!-- footer -->
+<footer class="footer py-5">
+	<div class="container py-sm-4">
+		<div class="row">
+			
+			
+			<div class="col-lg-3 col-md-6 mt-lg-0 mt-5">
+				<h3 class="mb-4 pb-3 w3f_title">这是一个好玩的工具</h3>
+			</div>
+
+		</div>
+	</div>
+	<!-- //footer bottom -->
+</footer>
+<!-- //footer -->
+
+
+
+ <!--model-forms-->
+   <!---->
+
+
+	<!--&lt;!&ndash; js &ndash;&gt;-->
+	<!--<script src="../static/jquery-2.1.4.min.js"></script>-->
+	<!--<script src="../static/bootstrap.js"></script> &lt;!&ndash; Necessary-JavaScript-File-For-Bootstrap &ndash;&gt;-->
+	<!--&lt;!&ndash; //js &ndash;&gt;-->
+	<!---->
+    <!--<script src="../static/modernizr-2.6.2.min.js"></script>-->
+
+	 <!--&lt;!&ndash;search jQuery&ndash;&gt;-->
+    <!--<script src="../static/classie-search.js"></script>-->
+    <!--<script src="../static/demo1-search.js"></script>-->
+    <!--&lt;!&ndash;//search jQuery&ndash;&gt;-->
+
+    <!--<script>-->
+        <!--$(document).ready(function() {-->
+            <!--$(".dropdown").hover(-->
+                <!--function() {-->
+                    <!--$('.dropdown-menu', this).stop(true, true).slideDown("fast");-->
+                    <!--$(this).toggleClass('open');-->
+                <!--},-->
+                <!--function() {-->
+                    <!--$('.dropdown-menu', this).stop(true, true).slideUp("fast");-->
+                    <!--$(this).toggleClass('open');-->
+                <!--}-->
+            <!--);-->
+        <!--});-->
+    <!--</script>-->
+    <!--&lt;!&ndash; //dropdown nav &ndash;&gt;-->
+
+
+	<!--&lt;!&ndash; start-smoth-scrolling &ndash;&gt;-->
+	<!--<script src="../static/SmoothScroll.min.js"></script>-->
+	<!--<script src="../static/move-top.js"></script>-->
+	<!--<script src="../static/easing.js"></script>-->
+	<!--<script>-->
+		<!--jQuery(document).ready(function($) {-->
+			<!--$(".scroll").click(function(event){		-->
+				<!--event.preventDefault();-->
+				<!--$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);-->
+			<!--});-->
+		<!--});-->
+	<!--</script>-->
+	<!--&lt;!&ndash; here stars scrolling icon &ndash;&gt;-->
+	<!--<script>-->
+		<!--$(document).ready(function() {-->
+			<!--/*-->
+				<!--var defaults = {-->
+				<!--containerID: 'toTop', // fading element id-->
+				<!--containerHoverID: 'toTopHover', // fading element hover id-->
+				<!--scrollSpeed: 1200,-->
+				<!--easingType: 'linear' -->
+				<!--};-->
+			<!--*/-->
+								<!---->
+			<!--$().UItoTop({ easingType: 'easeOutQuart' });-->
+								<!---->
+			<!--});-->
+	<!--</script>-->
+	<!--&lt;!&ndash; //here ends scrolling icon &ndash;&gt;-->
+	<!--&lt;!&ndash; start-smoth-scrolling &ndash;&gt;-->
+
+</body>
+</html>
