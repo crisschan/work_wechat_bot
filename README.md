@@ -11,6 +11,8 @@
 
 基于flask做了web的封装，可以发送文本、markdown、微信文章类型的消息，提供了ui的发送消息的方式，同时也提供了接口访问。
 
+![](https://raw.githubusercontent.com/crisschan/pic_down/master/20191105150214.png)
+![](https://raw.githubusercontent.com/crisschan/pic_down/master/20191105150242.png)
 ## 接口说明
 
     {
